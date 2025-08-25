@@ -1,1 +1,29 @@
 # college-management-system
+CREATE DATABASE college_admission;
+
+USE college_admission;
+
+-- Students Table
+CREATE TABLE Students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    marks INT
+);
+
+-- Courses Table
+CREATE TABLE Courses (
+    course_id INT AUTO_INCREMENT PRIMARY KEY,
+    course_name VARCHAR(100),
+    cutoff_marks INT
+);
+
+-- Applications Table
+CREATE TABLE Applications (
+    app_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    status VARCHAR(20) DEFAULT 'Pending',
+    FOREIGN KEY (student_id) REFERENCES Students(student_id),
+    FOREIGN KEY (course_id) REFERENCES Courses(course_id)
+);
